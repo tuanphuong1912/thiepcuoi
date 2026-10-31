@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Lễ Thành Hôn - Công Tuấn & Trúc Phương</title>
   
-  <!-- Tối ưu font: Chỉ tải các weight thực sự sử dụng -->
+  <!-- Font chữ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
       justify-content: center;
       padding: 24px;
       text-align: center;
-      transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
       will-change: transform, opacity;
     }
     .welcome-overlay.fade-out {
@@ -90,7 +90,7 @@
       background: var(--accent-color);
       color: #fff;
       border: none;
-      padding: 14px 32px;
+      padding: 14px 34px;
       font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 2px;
@@ -180,7 +180,7 @@
       width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
-      object-position: center 5%;
+      object-position: center 15%;
       display: block;
     }
     .hero-top::after {
@@ -412,13 +412,6 @@
       text-align: center;
       padding: 6px;
     }
-    .timeline-icon {
-      width: 38px;
-      height: 38px;
-      margin: 0 auto 10px;
-      opacity: 0.88;
-      display: block;
-    }
     .timeline-time {
       font-size: 0.85rem;
       font-weight: 600;
@@ -458,4 +451,267 @@
       font-weight: 500;
     }
     .form-group input, 
-    .form-group select
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #dcd1c4;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: #faf8f5;
+      color: #333;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--accent-color);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    .btn-submit:hover {
+      background: var(--primary-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MÀN HÌNH CHÀO -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-decor">Save the Date</div>
+    <div class="welcome-title">Thư Mời Cưới</div>
+    <div class="welcome-names">Công Tuấn<br>&amp;<br>Trúc Phương</div>
+    <button class="welcome-btn" id="openBtn">Mở Thiệp Cưới</button>
+  </div>
+
+  <!-- NÚT BẬT / TẮT NHẠC -->
+  <button class="music-btn" id="musicToggle" title="Bật/Tắt nhạc">🎵</button>
+  <audio id="weddingMusic" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-walk-672.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- CONTAINER THIỆP CHÍNH -->
+  <main class="container">
+    
+    <!-- KHUNG HÌNH HERO -->
+    <div class="hero-gallery">
+      <div class="hero-top">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Ảnh cưới chính">
+        <div class="overlay-text">
+          <div class="forever">Forever Together</div>
+          <div class="promise">A journey of love</div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" alt="Ảnh cưới 1">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" alt="Ảnh cưới 2">
+      </div>
+    </div>
+
+    <!-- NỘI DUNG THIỆP -->
+    <div class="content-wrapper">
+      
+      <!-- GIA ĐÌNH HAI BÊN -->
+      <section class="family-section">
+        <div>
+          <div class="family-title">Nhà Trai</div>
+          <div class="family-name">Ô. Nguyễn Văn A</div>
+          <div class="family-name">Bà. Trần Thị B</div>
+          <div class="family-location">TP. Hồ Chí Minh</div>
+        </div>
+        <div>
+          <div class="family-title">Nhà Gái</div>
+          <div class="family-name">Ô. Lê Văn C</div>
+          <div class="family-name">Bà. Phạm Thị D</div>
+          <div class="family-location">Đà Nẵng</div>
+        </div>
+      </section>
+
+      <!-- LỜI MỜI VÀ TÊN KHÁCH MỜI -->
+      <section class="invitation-text">
+        <div class="label">Trân trọng kính mời</div>
+        <div class="guest-name-box" id="guestName">Quý Khách</div>
+        <div class="invitation-desc">Đến tham dự buổi tiệc chung vui cùng gia đình chúng tôi</div>
+      </section>
+
+      <!-- TÊN CÔ DÂU CHÚ RỂ -->
+      <div class="wedding-names-container">
+        <div class="wedding-names">
+          <h1>Công Tuấn<br>&amp;<br>Trúc Phương</h1>
+        </div>
+      </div>
+
+      <!-- ĐẾM NGƯỢC NGÀY CƯỚI -->
+      <section class="countdown">
+        <div class="countdown-item">
+          <span id="days">00</span>
+          <label>Ngày</label>
+        </div>
+        <div class="countdown-item">
+          <span id="hours">00</span>
+          <label>Giờ</label>
+        </div>
+        <div class="countdown-item">
+          <span id="minutes">00</span>
+          <label>Phút</label>
+        </div>
+        <div class="countdown-item">
+          <span id="seconds">00</span>
+          <label>Giây</label>
+        </div>
+      </section>
+
+      <!-- THỜI GIAN & ĐỊA ĐIỂM -->
+      <section class="event-details">
+        <div class="time-top">Vào lúc 11:30 • Chủ Nhật</div>
+        <div class="main-date">28 . 12 . 2026</div>
+        <div class="venue-name">Trung Tâm Hội Nghị White Palace</div>
+        <div class="venue-sub">Sảnh Grand Ballroom</div>
+        <div class="venue-address">194 Hoàng Văn Thụ, Phường 9, Quận Phú Nhuận, TP. HCM</div>
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn-map">📍 Xem bản đồ</a>
+      </section>
+
+      <!-- TIMELINE CHƯƠNG TRÌNH -->
+      <section class="timeline-section">
+        <div class="timeline-title">Lịch Trình</div>
+        <div class="timeline-grid">
+          <div class="timeline-item">
+            <div style="font-size: 24px; margin-bottom: 8px;">🥂</div>
+            <div class="timeline-time">11:00</div>
+            <div class="timeline-desc">Đón khách</div>
+          </div>
+          <div class="timeline-item">
+            <div style="font-size: 24px; margin-bottom: 8px;">💍</div>
+            <div class="timeline-time">11:30</div>
+            <div class="timeline-desc">Làm lễ</div>
+          </div>
+          <div class="timeline-item">
+            <div style="font-size: 24px; margin-bottom: 8px;">🍽️</div>
+            <div class="timeline-time">12:00</div>
+            <div class="timeline-desc">Khai tiệc</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- FORM RSVP -->
+    <section class="rsvp-section">
+      <h2>Xác Nhận Tham Dự</h2>
+      <form id="rsvpForm">
+        <div class="form-group">
+          <label for="guestInput">Họ và tên của bạn</label>
+          <input type="text" id="guestInput" required placeholder="Nhập tên của bạn">
+        </div>
+        <div class="form-group">
+          <label for="attendSelect">Bạn sẽ đến chứ?</label>
+          <select id="attendSelect">
+            <option value="yes">Chắc chắn tham dự</option>
+            <option value="no">Rất tiếc không thể đến</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="countSelect">Số người tham dự</label>
+          <select id="countSelect">
+            <option value="1">1 người</option>
+            <option value="2">2 người</option>
+            <option value="3+">Cùng gia đình</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Gửi Phản Hồi</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script>
+    // 1. XỬ LÝ MỞ THIỆP & TỰ PHÁT NHẠC
+    const openBtn = document.getElementById('openBtn');
+    const overlay = document.getElementById('welcomeOverlay');
+    const music = document.getElementById('weddingMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isPlaying = false;
+
+    openBtn.addEventListener('click', () => {
+      overlay.classList.add('fade-out');
+      
+      // Kích hoạt phát nhạc khi người dùng tương tác mở thiệp
+      music.play().then(() => {
+        isPlaying = true;
+        musicToggle.classList.add('rotating');
+      }).catch(err => {
+        console.warn('Trình duyệt chặn autoplay:', err);
+      });
+    });
+
+    // 2. BẬT / TẮT NHẠC THỦ CÔNG
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        musicToggle.classList.remove('rotating');
+        isPlaying = false;
+      } else {
+        music.play();
+        musicToggle.classList.add('rotating');
+        isPlaying = true;
+      }
+    });
+
+    // 3. TỰ ĐỘNG LẤY TÊN KHÁCH TỪ LINK (VD: link.html?u=Anh+Hùng)
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestParam = urlParams.get('u') || urlParams.get('guest');
+    if (guestParam) {
+      document.getElementById('guestName').textContent = guestParam;
+      document.getElementById('guestInput').value = guestParam;
+    }
+
+    // 4. ĐỒNG HỒ ĐẾM NGƯỢC (Tùy chỉnh ngày cưới tại đây)
+    const weddingDate = new Date('2026-12-28T11:30:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 5. XỬ LÝ SUBMIT RSVP
+    document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Cảm ơn bạn đã gửi phản hồi!');
+    });
+  </script>
+</body>
+</html>
