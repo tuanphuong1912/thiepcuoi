@@ -170,13 +170,14 @@
       overflow: hidden;
       line-height: 0;
     }
-    .hero-top img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      object-position: center 5%;
-      display: block;
-    }
+.hero-top img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%; /* Dịch trọng tâm xuống thấp hơn */
+  transform: scale(1.08);       /* Zoom nhẹ 8% để mép trên ra khỏi khung */
+  display: block;
+}
     .hero-top::after {
       content: '';
       position: absolute;
