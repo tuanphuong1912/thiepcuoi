@@ -549,7 +549,7 @@
         <div class="invitation-desc">Đến dự lễ thành hôn của chúng tôi</div>
       </div>
 
-      <!-- TÊN CẶP ĐÔI (ĐÃ ĐỔI: CÔNG TUẤN & TRÚC PHƯƠNG) -->
+      <!-- TÊN CẶP ĐÔI -->
       <div class="wedding-names-container">
         <div class="wedding-names">
           <h1>Công Tuấn</h1>
@@ -634,13 +634,19 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <!-- Ô NHẬP SỐ LƯỢNG NGƯỜI THAM DỰ (TỰ ĐIỀN) -->
+        <div class="form-group" id="pax-container">
           <label for="pax">Số lượng người tham dự</label>
-          <select id="pax" name="pax">
-            <option value="1">1 người</option>
-            <option value="2">2 người</option>
-            <option value="3+">3 người trở lên</option>
-          </select>
+          <input 
+            type="number" 
+            id="pax" 
+            name="pax" 
+            min="1" 
+            max="10" 
+            value="1" 
+            placeholder="Nhập số người đi cùng (ví dụ: 1, 2...)"
+            required
+          >
         </div>
 
         <div class="form-group">
@@ -700,6 +706,21 @@
         isPlaying = false;
       } else {
         playMusic();
+      }
+    });
+
+    // Tự động ẩn hoặc set 0 cho ô số lượng nếu khách chọn 'Rất tiếc không thể đến'
+    const statusSelect = document.getElementById('status');
+    const paxContainer = document.getElementById('pax-container');
+    const paxInput = document.getElementById('pax');
+
+    statusSelect.addEventListener('change', (e) => {
+      if (e.target.value === 'Rất tiếc không thể đến') {
+        paxContainer.style.display = 'none';
+        paxInput.value = 0;
+      } else {
+        paxContainer.style.display = 'block';
+        if (paxInput.value == 0) paxInput.value = 1;
       }
     });
 
