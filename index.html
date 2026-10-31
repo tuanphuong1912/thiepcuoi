@@ -503,7 +503,7 @@
     </button>
   </div>
 
-  <!-- ÂM THANH: preload="none" để không chiếm băng thông khi mở web -->
+  <!-- ÂM THANH -->
   <audio id="wedding-audio" loop preload="none">
     <source src="nhac-cuoi.mp3" type="audio/mpeg">
   </audio>
@@ -511,20 +511,20 @@
 
   <div class="container">
     
-    <!-- GALLERY HÌNH ẢNH: Tối ưu ưu tiên tải -->
+    <!-- GALLERY HÌNH ẢNH -->
     <div class="hero-gallery">
       <div class="hero-top">
-        <!-- Ảnh chính ưu tiên fetch cao và decoding async -->
-        <img src="anh-bia.jpg" alt="Cô dâu Trúc Phương & Chú rể Công Tuấn" fetchpriority="high" decoding="async" />
+        <!-- Đã sửa thành anh-bia.webp -->
+        <img src="anh-bia.webp" alt="Cô dâu Trúc Phương & Chú rể Công Tuấn" fetchpriority="high" decoding="async" />
         <div class="overlay-text">
           <div class="forever">We know, We love</div>
           <div class="promise">WE LIVE, WE GROW</div>
         </div>
       </div>
       <div class="hero-bottom">
-        <!-- Ảnh phụ lazy-load, không tải chặn trang đầu -->
-        <img src="anh-doc-1.jpg" alt="Trúc Phương & Công Tuấn" loading="lazy" decoding="async" />
-        <img src="anh-doc-2.jpg" alt="Nhẫn cưới và bé mèo" loading="lazy" decoding="async" />
+        <!-- Đã sửa thành anh-doc-1.webp và anh-doc-2.webp -->
+        <img src="anh-doc-1.webp" alt="Trúc Phương & Công Tuấn" loading="lazy" decoding="async" />
+        <img src="anh-doc-2.webp" alt="Nhẫn cưới và bé mèo" loading="lazy" decoding="async" />
       </div>
     </div>
 
@@ -704,7 +704,7 @@
       }
     });
 
-    // Đồng hồ đếm ngược: tính toán ngay lập tức trước khi set interval
+    // Đồng hồ đếm ngược
     const weddingDate = new Date("2026-12-19T17:30:00").getTime();
     const dSpan = document.getElementById('days');
     const hSpan = document.getElementById('hours');
