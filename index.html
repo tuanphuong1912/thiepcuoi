@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Lễ Thành Hôn - Công Tuấn & Trúc Phương</title>
   
-  <!-- Tối ưu kết nối Font: chỉ tải các độ dày thực sự dùng -->
+  <!-- Tối ưu kết nối Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -170,14 +170,15 @@
       overflow: hidden;
       line-height: 0;
     }
-.hero-top img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  /* Đổi từ 30% lên 45% - 55% để mép trên trượt hẳn lên khỏi khung nhìn */
-  object-position: center 50%; 
-  display: block;
-}
+    .hero-top img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      /* Phóng to và lấy gốc neo ở chân ảnh để đẩy toàn bộ mép trên mang logo ra ngoài */
+      transform: scale(1.12);
+      transform-origin: center bottom;
+      display: block;
+    }
     .hero-top::after {
       content: '';
       position: absolute;
@@ -195,15 +196,15 @@
       text-shadow: 0 2px 8px rgba(0,0,0,0.7);
       z-index: 2;
     }
-.overlay-text .forever {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1rem, 3.2vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: 3.5px;
-  text-transform: uppercase; /* Bỏ dòng này nếu bạn muốn giữ chữ hoa thường "We know, We love" */
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
+    .overlay-text .forever {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1rem, 3.2vw, 1.35rem);
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
     .overlay-text .promise {
       font-size: 0.72rem;
       letter-spacing: 4px;
@@ -638,7 +639,7 @@
           </select>
         </div>
 
-        <!-- Ô NHẬP SỐ LƯỢNG NGƯỜI THAM DỰ (TỰ ĐIỀN) -->
+        <!-- Ô NHẬP SỐ LƯỢNG NGƯỜI THAM DỰ -->
         <div class="form-group" id="pax-container">
           <label for="pax">Số lượng người tham dự</label>
           <input 
@@ -648,7 +649,7 @@
             min="1" 
             max="10" 
             value="1" 
-            placeholder="Nhập số người đi cùng (ví dụ: 1, 2...)"
+            placeholder="Nhập số người đi cùng (ví dụ: 1, 2...)" 
             required
           >
         </div>
