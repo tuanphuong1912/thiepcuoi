@@ -668,9 +668,9 @@
 
   <script>
     const DEFAULT_MUSIC = "nhac-cuoi-v2.mp3?v=20261101";
-    const CHI_NHI_MUSIC = "nhac-rieng-chi-Su.mp3";
+    const CHI_SU_MUSIC = "nhac-rieng-chi-Su.mp3";
 
-    // Xử lý param tên khách mời & chọn nhạc riêng cho Chị Nhi
+    // Xử lý param tên khách mời & chọn nhạc riêng cho Chị Suuuuuu
     const urlParams = new URLSearchParams(window.location.search);
     const guestParam = urlParams.get('to');
     const audio = document.getElementById('wedding-audio');
@@ -682,7 +682,7 @@
       document.getElementById('guest-name').innerText = cleanName;
       document.getElementById('form-guest-name').value = cleanName;
 
-      if (cleanName.toLowerCase() === "Chị Suuuuuu") {
+      if (cleanName.toLowerCase() === "chị suuuuuu") {
         musicToPlay = CHI_SU_MUSIC;
       }
     }
