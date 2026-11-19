@@ -505,10 +505,8 @@
     </button>
   </div>
 
-  <!-- ÂM THANH -->
-  <audio id="wedding-audio" loop preload="none">
-    <source src="nhac-cuoi-v2.mp3?v=20261101" type="audio/mpeg">
-  </audio>
+  <!-- ÂM THANH (src sẽ được JS gán tự động theo khách mời) -->
+  <audio id="wedding-audio" loop preload="none"></audio>
   <button id="music-control" class="music-btn" title="Bật/Tắt nhạc">🎵</button>
 
   <div class="container">
@@ -669,15 +667,28 @@
   </div>
 
   <script>
-    // Xử lý param tên khách mời
+    const DEFAULT_MUSIC = "nhac-cuoi-v2.mp3?v=20261101";
+    const CHI_NHI_MUSIC = "nhac-rieng-chi-Su.mp3";
+
+    // Xử lý param tên khách mời & chọn nhạc riêng cho Chị Nhi
     const urlParams = new URLSearchParams(window.location.search);
     const guestParam = urlParams.get('to');
+    const audio = document.getElementById('wedding-audio');
+
+    let musicToPlay = DEFAULT_MUSIC;
+
     if (guestParam) {
-      document.getElementById('guest-name').innerText = guestParam;
-      document.getElementById('form-guest-name').value = guestParam;
+      const cleanName = guestParam.trim();
+      document.getElementById('guest-name').innerText = cleanName;
+      document.getElementById('form-guest-name').value = cleanName;
+
+      if (cleanName.toLowerCase() === "chị nhi") {
+        musicToPlay = CHI_NHI_MUSIC;
+      }
     }
 
-    const audio = document.getElementById('wedding-audio');
+    audio.src = musicToPlay;
+
     const musicBtn = document.getElementById('music-control');
     const welcomeScreen = document.getElementById('welcome-screen');
     const btnOpenInvite = document.getElementById('btn-open-invite');
