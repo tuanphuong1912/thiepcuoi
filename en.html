@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Wedding Invitation - Công Tuấn & Trúc Phương</title>
+  
+  <!-- Optimize Font Connections -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #2b2b2b;
+      --accent-color: #8c6d62;
+      --bg-color: #ece5dc;
+      --text-color: #333333;
+      --card-bg: #fdfbf9;
+      --font-cursive: 'Alex Brush', cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-color);
+      background-image: radial-gradient(rgba(140, 109, 98, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* WELCOME SCREEN */
+    .welcome-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #fdfbf9;
+      background-image: radial-gradient(rgba(207, 194, 180, 0.25) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
+      will-change: transform, opacity;
+    }
+    .welcome-overlay.fade-out {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    .welcome-decor {
+      font-family: var(--font-cursive);
+      font-size: clamp(2rem, 5vw, 2.6rem);
+      color: var(--accent-color);
+      margin-bottom: 8px;
+    }
+    .welcome-title {
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .welcome-names {
+      font-family: var(--font-cursive);
+      font-size: clamp(3.2rem, 8vw, 4.4rem);
+      line-height: 1.15;
+      color: var(--primary-color);
+      margin-bottom: 35px;
+    }
+    .welcome-btn {
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(140, 109, 98, 0.35);
+      transition: background 0.3s, transform 0.3s;
+      animation: pulse 2.2s infinite ease-in-out;
+    }
+    .welcome-btn:hover {
+      background: var(--primary-color);
+      transform: translateY(-2px);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* MAIN INVITATION CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: var(--card-bg);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      overflow-x: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 40px 0; }
+      .container {
+        border-radius: 14px;
+        box-shadow: 0 20px 60px rgba(60, 40, 30, 0.12);
+      }
+      .music-btn {
+        top: 30px !important;
+        right: 30px !important;
+      }
+    }
+
+    /* MUSIC CONTROL BUTTON */
+    .music-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(5px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+    .music-btn:active { transform: scale(0.9); }
+    .rotating { animation: spin 3.5s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* PHOTO GALLERY */
+    .hero-gallery {
+      position: relative;
+      background: #111;
+      width: 100%;
+      overflow: hidden;
+    }
+    .hero-top {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .hero-top img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 45%, transparent 75%);
+      pointer-events: none;
+    }
+    .overlay-text {
+      position: absolute;
+      bottom: 18px;
+      left: 5%;
+      right: 5%;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      z-index: 2;
+    }
+    .overlay-text .forever {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .overlay-text .promise {
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 6px;
+      background: #151515;
+    }
+    .hero-bottom img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* CONTENT */
+    .content-wrapper {
+      padding: clamp(32px, 6vw, 44px) 24px 20px;
+      text-align: center;
+    }
+    .family-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 35px;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .family-title {
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--primary-color);
+    }
+    .family-name { color: #4a4a4a; }
+    .family-location {
+      font-style: italic;
+      color: #777;
+      margin-top: 3px;
+      font-size: 0.76rem;
+    }
+
+    .invitation-text { margin-bottom: 35px; }
+    .invitation-text .label {
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .guest-name-box {
+      font-family: var(--font-cursive);
+      font-size: clamp(2.8rem, 7vw, 3.4rem);
+      margin: 6px 0;
+      border-bottom: 1px solid #c8b9aa;
+      display: inline-block;
+      padding: 0 20px 8px;
+      color: var(--accent-color);
+      min-width: 200px;
+    }
+    .invitation-desc {
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #555;
+      margin-top: 14px;
+    }
+
+    .wedding-names-container { margin: 40px 0; }
+    .wedding-names h1 {
+      font-family: var(--font-cursive);
+      font-size: clamp(3.8rem, 10vw, 4.6rem);
+      font-weight: normal;
+      color: var(--primary-color);
+      line-height: 1.1;
+    }
+
+    /* COUNTDOWN */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 35px 0;
+    }
+    .countdown-item {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #e2d7cb;
+      padding: 10px 6px;
+      border-radius: 8px;
+      flex: 1;
+      max-width: 75px;
+    }
+    .countdown-item span {
+      display: block;
+      font-size: clamp(1.15rem, 3.5vw, 1.35rem);
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    .countdown-item label {
+      font-size: 0.65rem;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* EVENT DETAILS */
+    .event-details { margin-bottom: 35px; }
+    .time-top {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .main-date {
+      font-size: clamp(2rem, 6vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      border-top: 1px solid #dfd3c5;
+      border-bottom: 1px solid #dfd3c5;
+      padding: 10px 0;
+    }
+    .venue-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+    .venue-sub {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .venue-address {
+      font-size: 0.84rem;
+      color: #555;
+      line-height: 1.55;
+    }
+    .btn-map {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 10px 22px;
+      background: none;
+      border: 1px solid #444;
+      border-radius: 4px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-map:hover {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    /* TIMELINE */
+    .timeline-section { margin: 40px 0; }
+    .timeline-title {
+      font-family: var(--font-cursive);
+      font-size: clamp(3.2rem, 8vw, 3.8rem);
+      margin-bottom: 22px;
+      color: var(--primary-color);
+    }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .timeline-item {
+      text-align: center;
+      padding: 6px;
+    }
+    .timeline-icon {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 10px;
+      opacity: 0.88;
+      display: block;
+    }
+    .timeline-time {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 4px;
+    }
+    .timeline-desc {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+    }
+
+    /* RSVP FORM */
+    .rsvp-section {
+      background: #ffffff;
+      border-top: 1px solid #e8decb;
+      padding: clamp(32px, 6vw, 44px) 24px;
+      margin-top: 25px;
+    }
+    .rsvp-section h2 {
+      font-size: 1.15rem;
+      color: var(--primary-color);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+      color: #555;
+      font-weight: 500;
+    }
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #d8ccc0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background-color: #fff;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group select {
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23555555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 35px;
+    }
+    .form-group input:focus, 
+    .form-group select:focus, 
+    .form-group textarea:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(140, 109, 98, 0.15);
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transition: background 0.3s;
+    }
+    .btn-submit:hover { background: #111; }
+    #form-status {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WELCOME SCREEN -->
+  <div class="welcome-overlay" id="welcome-screen">
+    <div class="welcome-decor">Wedding Invitation</div>
+    <div class="welcome-names">Công Tuấn<br>&<br>Trúc Phương</div>
+    <div class="welcome-title">CORDIALLY INVITE YOU</div>
+    <button class="welcome-btn" id="btn-open-invite">
+      OPEN INVITATION & PLAY MUSIC 💌
+    </button>
+  </div>
+
+  <!-- AUDIO (src is dynamically assigned by JS based on guest parameter) -->
+  <audio id="wedding-audio" loop preload="none"></audio>
+  <button id="music-control" class="music-btn" title="Play/Pause Music">🎵</button>
+
+  <div class="container">
+    
+    <!-- PHOTO GALLERY -->
+    <div class="hero-gallery">
+      <div class="hero-top">
+        <img src="anh-bia.webp" alt="Groom Công Tuấn & Bride Trúc Phương" fetchpriority="high" decoding="async" />
+        <div class="overlay-text">
+          <div class="forever">We know, We love</div>
+          <div class="promise">WE LIVE, WE GROW</div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <img src="anh-doc-1.webp" alt="Công Tuấn & Trúc Phương" loading="lazy" decoding="async" />
+        <img src="anh-doc-2.webp" alt="Wedding rings and our cat" loading="lazy" decoding="async" />
+      </div>
+    </div>
+
+    <!-- WEDDING DETAILS -->
+    <div class="content-wrapper">
+      <div class="family-section">
+        <div>
+          <div class="family-title">GROOM'S PARENTS</div>
+          <div class="family-name">Mr. Đinh Văn Kiểm</div>
+          <div class="family-name">Mrs. Bùi Thị Xoa</div>
+          <div class="family-location">Ho Chi Minh City, Vietnam</div>
+        </div>
+        <div>
+          <div class="family-title">BRIDE'S PARENTS</div>
+          <div class="family-name">Mr. Ngô Văn Khiêm</div>
+          <div class="family-name">Mrs. Nguyễn Thị Ngọc Hiếu</div>
+          <div class="family-location">Ho Chi Minh City, Vietnam</div>
+        </div>
+      </div>
+
+      <div class="invitation-text">
+        <div class="label">CORDIALLY INVITING</div>
+        <div class="guest-name-box" id="guest-name">Honored Guest</div>
+        <div class="invitation-desc">To the wedding celebration of</div>
+      </div>
+
+      <!-- COUPLE NAMES -->
+      <div class="wedding-names-container">
+        <div class="wedding-names">
+          <h1>Công Tuấn</h1>
+          <h1 style="font-size: clamp(3.2rem, 8vw, 3.8rem); line-height: 0.6; margin: 10px 0;">&</h1>
+          <h1>Trúc Phương</h1>
+        </div>
+      </div>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="countdown">
+        <div class="countdown-item"><span id="days">00</span><label>Days</label></div>
+        <div class="countdown-item"><span id="hours">00</span><label>Hours</label></div>
+        <div class="countdown-item"><span id="minutes">00</span><label>Mins</label></div>
+        <div class="countdown-item"><span id="seconds">00</span><label>Secs</label></div>
+      </div>
+
+      <!-- TIME & VENUE -->
+      <div class="event-details">
+        <div class="time-top">AT 17:30, SATURDAY</div>
+        <div class="main-date">19.12.2026</div>
+        
+        <div class="venue-name">WHITE PALACE HOÀNG VĂN THỤ</div>
+        <div class="venue-sub">DIWA HALL</div>
+        <p class="venue-address">194 Hoàng Văn Thụ, Đức Nhuận Ward,<br>Ho Chi Minh City</p>
+        
+        <a href="https://share.google/VS10Qz3tavFnYO0rh" target="_blank" rel="noopener" class="btn-map">📍 VIEW ON GOOGLE MAPS</a>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline-section">
+        <div class="timeline-title">Timeline</div>
+        <div class="timeline-grid">
+          <div class="timeline-item">
+            <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 7h1v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2z" />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+            <div class="timeline-time">17:30</div>
+            <div class="timeline-desc">Welcome Guests</div>
+          </div>
+          
+          <div class="timeline-item">
+            <svg class="timeline-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 12 48 C 12 40, 16 34, 22 34 C 23.5 34, 24.5 35, 25 36 C 26 38, 25 40, 24 41.5 C 23 43, 22 45, 21.5 48 C 21 51, 23.5 53, 27 51.5 C 31 49.5, 30.5 41, 32.5 35.5 C 34.5 30, 36.5 25, 34 22.5 C 32.5 21, 31 22, 29.5 24 C 27 27.5, 27 32, 25.5 35 C 24 38, 20.5 40, 16.5 40.5" />
+              <path d="M 15 47 C 15 43.5, 17 41, 21 41 C 20.5 43, 19.5 45.5, 17 47.5" />
+              <path d="M 52 48 C 52 40, 48 34, 42 34 C 40.5 34, 39.5 35, 39 36 C 38 38, 39 40, 40 41.5 C 41 43, 42 45, 42.5 48 C 43 51, 40.5 53, 37 51.5 C 33 49.5, 33.5 41, 31.5 35.5 C 29.5 30, 27.5 25, 30 22.5 C 31.5 21, 33 22, 34.5 24 C 37 27.5, 37 32, 38.5 35 C 40 38, 43.5 40, 47.5 40.5" />
+              <path d="M 49 47 C 49 43.5, 47 41, 43 41 C 43.5 43, 44.5 45.5, 47 47.5" />
+              <path d="M 6 52 C 12 50.5, 18 53.5, 24 52 C 30 50.5, 36 53.5, 42 52 C 48 50.5, 54 53.5, 58 52" />
+              <path d="M 32 30 C 31.5 28.5, 29.5 28.5, 29.5 30 C 29.5 31.5, 32 33.5, 32 33.5 C 32 33.5, 34.5 31.5, 34.5 30 C 34.5 28.5, 32.5 28.5, 32 30 Z" fill="currentColor" opacity="0.3" stroke="none" />
+            </svg>
+            <div class="timeline-time">18:30</div>
+            <div class="timeline-desc">Ceremony</div>
+          </div>
+          
+          <div class="timeline-item">
+            <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 3h12l-2 9H8z" />
+              <path d="M12 12v6" />
+              <path d="M8 18h8" />
+            </svg>
+            <div class="timeline-time">19:00</div>
+            <div class="timeline-desc">Reception</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RSVP FORM -->
+    <section class="rsvp-section">
+      <h2>RSVP</h2>
+      <form id="rsvp-form">
+        <div class="form-group">
+          <label for="form-guest-name">Your Full Name</label>
+          <input type="text" id="form-guest-name" name="name" required placeholder="Enter your full name...">
+        </div>
+
+        <div class="form-group">
+          <label for="status">Attendance</label>
+          <select id="status" name="status" required>
+            <option value="Will joyfully attend">Joyfully accepts</option>
+            <option value="Regretfully unable to attend">Regretfully declines</option>
+          </select>
+        </div>
+
+        <!-- NUMBER OF GUESTS -->
+        <div class="form-group" id="pax-container">
+          <label for="pax">Number of Guests</label>
+          <input 
+            type="number" 
+            id="pax" 
+            name="pax" 
+            min="1" 
+            max="10" 
+            value="1" 
+            placeholder="Enter number of guests (e.g., 1, 2...)" 
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="requests">Special Requests (e.g., vegetarian meal, allergies...)</label>
+          <input type="text" id="requests" name="requests" placeholder="Enter any special requests (optional)...">
+        </div>
+
+        <div class="form-group">
+          <label for="message">Wishes for Công Tuấn & Trúc Phương</label>
+          <textarea id="message" name="message" rows="3" placeholder="Send your wishes to the groom & bride..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit">Send RSVP</button>
+        <div id="form-status"></div>
+      </form>
+    </section>
+
+  </div>
+
+  <script>
+    const DEFAULT_MUSIC = "nhac-cuoi-v2.mp3?v=20261101";
+    const CHI_SU_MUSIC = "nhac-rieng-chi-Su.mp3";
+
+    // Parse guest name from URL parameter & assign custom track for Chị Suuuuuu
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestParam = urlParams.get('to');
+    const audio = document.getElementById('wedding-audio');
+
+    let musicToPlay = DEFAULT_MUSIC;
+
+    if (guestParam) {
+      const cleanName = guestParam.trim();
+      document.getElementById('guest-name').innerText = cleanName;
+      document.getElementById('form-guest-name').value = cleanName;
+
+      if (cleanName.toLowerCase() === "chị suuuuuu") {
+        musicToPlay = CHI_SU_MUSIC;
+      }
+    }
+
+    audio.src = musicToPlay;
+
+    const musicBtn = document.getElementById('music-control');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const btnOpenInvite = document.getElementById('btn-open-invite');
+    let isPlaying = false;
+
+    function playMusic() {
+      audio.play().then(() => {
+        musicBtn.classList.add('rotating');
+        isPlaying = true;
+      }).catch(err => {
+        console.warn("Waiting for user interaction to play audio:", err);
+      });
+    }
+
+    btnOpenInvite.addEventListener('click', () => {
+      playMusic();
+      welcomeScreen.classList.add('fade-out');
+      setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+      }, 700);
+    });
+
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPlaying) {
+        audio.pause();
+        musicBtn.classList.remove('rotating');
+        isPlaying = false;
+      } else {
+        playMusic();
+      }
+    });
+
+    // Auto-hide or set 0 for guest count if declining
+    const statusSelect = document.getElementById('status');
+    const paxContainer = document.getElementById('pax-container');
+    const paxInput = document.getElementById('pax');
+
+    statusSelect.addEventListener('change', (e) => {
+      if (e.target.value === 'Regretfully unable to attend') {
+        paxContainer.style.display = 'none';
+        paxInput.value = 0;
+      } else {
+        paxContainer.style.display = 'block';
+        if (paxInput.value == 0) paxInput.value = 1;
+      }
+    });
+
+    // Countdown Timer
+    const weddingDate = new Date("2026-12-19T17:30:00").getTime();
+    const dSpan = document.getElementById('days');
+    const hSpan = document.getElementById('hours');
+    const mSpan = document.getElementById('minutes');
+    const sSpan = document.getElementById('seconds');
+
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = weddingDate - now;
+
+      if (distance > 0) {
+        dSpan.innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        hSpan.innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        mSpan.innerText = Math.floor((distance % (1000 * 60)) / (1000 * 60));
+        sSpan.innerText = Math.floor((distance % 1000) / 1000);
+      }
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // RSVP Form Submission
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpKZKMSIUWqH9D8ZtHtRElLLLhhCnb3-SCcCwPg1YDFSSxaox9LlDPtH4lzkTnLqC_/exec";
+    const form = document.getElementById('rsvp-form');
+    const statusText = document.getElementById('form-status');
+    const submitBtn = document.getElementById('btn-submit');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending your RSVP...";
+
+      const formData = new FormData(form);
+
+      fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
+        .then(() => {
+          statusText.style.color = '#2e7d32';
+          statusText.innerText = "Thank you for sending us your RSVP!";
+          form.reset();
+        })
+        .catch(() => {
+          statusText.style.color = '#c62828';
+          statusText.innerText = "An error occurred. Please try again!";
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Send RSVP";
+        });
+    });
+  </script>
+</body>
+</html>
